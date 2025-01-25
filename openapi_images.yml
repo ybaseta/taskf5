@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Image Management API
+  description: API for managing images with functionalities to list, add, delete, and edit images.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Local server
+paths:
+  /images:
+    get:
+      summary: Get list of images
+      description: Returns a list of all user images with their titles.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          description: Unique ID of the user whose images are being retrieved.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of images retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Image'
+    post:
+      summary: Add a new image
+      description: Adds a new image with a title to the database.
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          description: Unique ID of the user adding the image.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewImage'
+      responses:
+        '201':
+          description: Image created successfully.
+  /images/{id}:
+    delete:
+      summary: Delete an image
+      description: Deletes an existing image using its ID.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of the image to delete.
+          schema:
+            type: string
+        - name: userId
+          in: query
+          required: true
+          description: Unique ID of the user deleting the image.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Image deleted successfully.
+        '404':
+          description: Image not found.
+    put:
+      summary: Edit an image
+      description: Edits the title or URL of an existing image.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Unique ID of the image to edit.
+          schema:
+            type: string
+        - name: userId
+          in: query
+          required: true
+          description: Unique ID of the user editing the image.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditImage'
+      responses:
+        '200':
+          description: Image edited successfully.
+        '404':
+          description: Image not found.
+components:
+  schemas:
+    Image:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique ID of the image.
+        title:
+          type: string
+          description: Title of the image.
+        url:
+          type: string
+          description: URL of the image.
+    NewImage:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the image.
+        url:
+          type: string
+          description: URL of the image.
+    EditImage:
+      type: object
+      properties:
+        title:
+          type: string
+          description: New title of the image.
+        url:
+          type: string
+          description: New URL of the image.
