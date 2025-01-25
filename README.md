@@ -12,6 +12,8 @@ H2 como base de datos en memoria
 
 Spring Data
 
+SpringDoc OpenAPI que genera un interfaz visual swagger UI que sirve como documentación interactiva que permite probar los endpoints
+
 ## Author
 
 Eduardo Garcia Ibaseta
