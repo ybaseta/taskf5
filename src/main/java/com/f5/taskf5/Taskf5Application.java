@@ -1,4 +1,4 @@
-package com.example.taskf5;
+package com.f5.taskf5;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

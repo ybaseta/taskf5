@@ -1,4 +1,4 @@
-package com.example.taskf5;
+package com.f5.taskf5;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
