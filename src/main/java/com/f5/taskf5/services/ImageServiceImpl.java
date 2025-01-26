@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.f5.taskf5.entities.Image;
+import com.f5.taskf5.model.NewImage;
 import com.f5.taskf5.repositories.ImageRepository;
 
 
@@ -37,6 +38,14 @@ public class ImageServiceImpl implements ImageService {
         }
         return false;
     }
+    @Override
+    public Image addImage(String userId, NewImage newImage) {
+        Image image = new Image(newImage.getTitle(), newImage.getUrl());
+        image.setUserId(userId);
+        return imageRepository.save(image);
+    }
+    
+    
     
     
 }
