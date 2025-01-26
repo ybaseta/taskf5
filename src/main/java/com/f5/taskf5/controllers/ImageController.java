@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.f5.taskf5.entities.Image;
+import com.f5.taskf5.model.EditImage;
 import com.f5.taskf5.model.NewImage;
 import com.f5.taskf5.services.ImageService;
 
@@ -56,5 +58,20 @@ public class ImageController {
          Image createdImage = imageService.addImage(userId, newImage);
          return ResponseEntity.status(201).body(createdImage);
      }
+     
+     //edit an existing image
+     @PutMapping("/{id}")
+     public ResponseEntity<Image> editImage(
+             @PathVariable String id,
+             @RequestParam String userId,
+             @RequestBody EditImage editImage) {
+         Image updatedImage = imageService.editImage(id, userId, editImage);
+         if (updatedImage != null) {
+             return ResponseEntity.ok(updatedImage);
+         } else {
+             return ResponseEntity.notFound().build();
+         }
+     }
+
 
 }   

@@ -4,7 +4,7 @@ info:
   description: API for managing images with functionalities to list, add, delete, and edit images.
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
+  - url: http://localhost:8080
     description: Local server
 paths:
   /images:
@@ -93,6 +93,11 @@ paths:
       responses:
         '200':
           description: Image edited successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EditImage'
+      
         '404':
           description: Image not found.
 components:
