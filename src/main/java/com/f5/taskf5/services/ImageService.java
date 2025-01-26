@@ -12,4 +12,6 @@ public interface ImageService {
 
 	List<Image> getImagesByUserId(String userId);
 
+	boolean deleteImage(String id, String userId);
+
 }

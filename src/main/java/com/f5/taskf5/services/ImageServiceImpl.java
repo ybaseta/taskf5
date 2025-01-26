@@ -3,6 +3,7 @@ package com.f5.taskf5.services;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,4 +27,16 @@ public class ImageServiceImpl implements ImageService {
     public List<Image> getImagesByUserId(String userId) {
         return imageRepository.findByUserId(userId);
     }
+    
+    @Override
+    public boolean deleteImage(String id, String userId) {
+        Optional<Image> image = imageRepository.findByIdAndUserId(Long.parseLong(id), userId);
+        if (image.isPresent()) {
+            imageRepository.delete(image.get());
+            return true;
+        }
+        return false;
+    }
+    
+    
 }
