@@ -26,9 +26,7 @@ import com.f5.taskf5.services.ImageService;
 //tomcat will not run, bd will not run and bean services won´t be available
 @Import(TestConfig.class)
 
-//happy path
-@DisplayName("WHEN a GET /image request with a userId"
-        +"    THEN it should respond with 200 http status and a JSON list with info of that user images")
+
 class ImageControllerTest {
 	
 	@Autowired
@@ -59,10 +57,24 @@ class ImageControllerTest {
 	
 
 	@Test
+	//happy path
+	@DisplayName("WHEN a GET /image request with a userId"
+	        +"    THEN it should respond with 200 http status and a JSON list with info of that user images")
 	void getImages() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/images?userId=userTest1"))
 		       .andExpect(MockMvcResultMatchers.status().isOk())
 		       .andExpect(MockMvcResultMatchers.jsonPath("@.[1].url").value("urltest2"));
 	}
+	
+	@Test
+	//not happy path
+	@DisplayName("WHEN a GET /image request without a userId"
+	        +"    THEN it should respond with 4xx http status ")
+	void getImagesWitoutuserId() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/images"))
+		       .andExpect(MockMvcResultMatchers.status().is4xxClientError());
+	}       
 
 }
+	
+	
