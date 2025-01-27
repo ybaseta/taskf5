@@ -29,8 +29,18 @@ public class Image {
         this.title = title;
         this.url = url;
     }
+    
+    
 
-    public Long getId() {
+    public Image(Long id, String title, String url, String userId) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.url = url;
+		this.userId = userId;
+	}
+
+	public Long getId() {
         return id;
     }
 
