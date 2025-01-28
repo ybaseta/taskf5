@@ -4,15 +4,17 @@ import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 import com.f5.taskf5.services.ImageService;
 
-//best alternative to create the mocks than using @MockBean which is deprecated
+//alternative to create the mocks other than using @MockBean which is been deprecated
 
 @Configuration
-public class TestConfig {
-
-    @Bean
-    public ImageService imageService() {
-        return Mockito.mock(ImageService.class);
+public class TestControllerConfig {
+	
+	 @Bean
+	    public ImageService imageService() {
+	        return Mockito.mock(ImageService.class);
+   
     }
 }

@@ -24,7 +24,7 @@ import com.f5.taskf5.services.ImageService;
 @WebMvcTest(ImageController.class)
 //this is a test slice only the bean controller is available
 //tomcat will not run, bd will not run and bean services won´t be available
-@Import(TestConfig.class)
+@Import(TestControllerConfig.class)
 
 
 class ImageControllerTest {
