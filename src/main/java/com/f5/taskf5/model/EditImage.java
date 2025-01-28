@@ -4,7 +4,18 @@ public class EditImage {
     private String title;
     private String url;
 
-    public String getTitle() {
+    
+	public EditImage(String title, String url) {
+		super();
+		this.title = title;
+		this.url = url;
+	}
+
+	public EditImage() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getTitle() {
         return title;
     }
 

@@ -44,7 +44,8 @@ public class ImageController {
      //Delete an image given its id and a userId
      @DeleteMapping("/{id}")
      public ResponseEntity<Void> deleteImage(@PathVariable String id, @RequestParam String userId) {
-        boolean isDeleted = imageService.deleteImage(id, userId);
+        
+    	boolean isDeleted = imageService.deleteImage(id, userId);
         if (isDeleted) {
           return ResponseEntity.ok().build();
         } else {
